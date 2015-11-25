@@ -255,7 +255,7 @@ void ofApp::draw(){
         ofSetColor(0);
         this->textRenderer->drawString("Message from Arduino: " + this->messageFromArduino, initialX, lineSpacing + initialY);
         if(currentState == 1){
-            this->textRenderer->drawString("Current State: ON", initialX, (2 * lineSpacing) + initialY);
+            this->textRenderer->drawString("Current State: ON", initialX, (3 * lineSpacing) + initialY);
         }
         else{
             this->textRenderer->drawString("Current State: OFF", initialX,  (3 * lineSpacing)  + initialY);
