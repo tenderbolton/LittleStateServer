@@ -187,7 +187,7 @@ void ofApp::readFromArduino(){
                     
                     if(messageFromArduino.compare("OFF\r\n") == 0){
                         prevState = currentState;
-                        currentState = 0; //turned of
+                        currentState = 0; //turned off
                     }
                     
                     //end verification
