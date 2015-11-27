@@ -1,5 +1,5 @@
 <MAIN_SETTINGS>
     <OSC_OUTPUT ip="127.0.0.1" port="30000"/>
-    <SERIAL_CONF name="tty.usbmodemFD121" bauds="9600"/>
+    <SERIAL_CONF name="COM9" bauds="9600"/>
     <SOUND_CONF onSoundFile="sounds/bardo13s.mp3" onSoundVolume="0.75" offSoundFile="sounds/espera.mp3" offSoundVolume="0.75"/>
 </MAIN_SETTINGS>

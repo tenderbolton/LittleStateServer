@@ -159,8 +159,15 @@ void ofApp::update(){
 
 
 void ofApp::readFromArduino(){
+
+
+	if (!serial.getConnectionStatus()){
+		serial.close();
+	}
     
     int newByte = serial.readByte();
+
+	bool weHaveNewMessage = false;
     
     if(newByte!=OF_SERIAL_NO_DATA && newByte!=OF_SERIAL_ERROR){
         
@@ -177,25 +184,34 @@ void ofApp::readFromArduino(){
                 arduinoBuff += newChar;
                 
                 if(arduinoBuff.find("\n")!=string::npos){
-                    messageFromArduino = arduinoBuff;
-                    //verify state change
-                    
-                    if(messageFromArduino.compare("ON\r\n") == 0){
-                        prevState = currentState;
-                        currentState = 1; //turned on
-                    }
-                    
-                    if(messageFromArduino.compare("OFF\r\n") == 0){
-                        prevState = currentState;
-                        currentState = 0; //turned of
-                    }
-                    
-                    //end verification
+					weHaveNewMessage = true;
+					messageFromArduino = arduinoBuff;
                     arduinoBuff = "";
                 }
             }
         }
     }
+
+	if(weHaveNewMessage){
+		 //verify state change
+                    
+        if(messageFromArduino.compare("ON\r\n") == 0){
+            prevState = currentState;
+            currentState = 1; //turned on
+        }
+                    
+        if(messageFromArduino.compare("OFF\r\n") == 0){
+            prevState = currentState;
+            currentState = 0; //turned of
+        }
+
+		 //end verification
+	}
+	else{
+		//we do state swap
+		prevState = currentState;
+	}
+
     
     if(newByte==OF_SERIAL_ERROR){
         serial.close();
