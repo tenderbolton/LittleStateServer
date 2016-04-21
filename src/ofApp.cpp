@@ -161,9 +161,9 @@ void ofApp::update(){
 void ofApp::readFromArduino(){
 
 
-	if (!serial.getConnectionStatus()){
+	/*if (!serial.getConnectionStatus()){
 		serial.close();
-	}
+	}*/
     
     int newByte = serial.readByte();
 
